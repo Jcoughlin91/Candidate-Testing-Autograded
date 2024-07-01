@@ -16,10 +16,7 @@ let correctAnswers = [
   "3"
 ];
 let candidateAnswers = [];
-
-let question = questions[0];
-let correctAnswer = correctAnswers[0];
-let candidateAnswer = "";
+let candidateAnswer = ""; 
 
 function askForName() {
   candidateName = input.question("Please enter your name: ");
@@ -38,7 +35,7 @@ function gradeQuiz(candidateAnswers) {
   for (let i = 0; i < questions.length; i++) {
     let userAnswer = candidateAnswers[i];
     let correctAnswer = correctAnswers[i];
-    console.log(`\nQuestion ${i+1}: ${questions[i]}`);
+    console.log(`\nQuestion ${i + 1}: ${questions[i]}`);
     console.log(`Your answer: ${userAnswer}`);
     console.log(`Correct answer: ${correctAnswer}`);
     if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
@@ -50,6 +47,13 @@ function gradeQuiz(candidateAnswers) {
   }
   let grade = (numCorrect / questions.length) * 100;
   console.log(`\n>>> Overall Grade: ${grade}% (${numCorrect} of ${questions.length} responses correct) <<<`);
+
+  if (grade >= 80) {
+    console.log(">>> Status: PASSED <<<");
+  } else {
+    console.log(">>> Status: FAILED <<<");
+  }
+
   return grade;
 }
 
@@ -60,15 +64,15 @@ function runProgram() {
   gradeQuiz(candidateAnswers);
 }
 
+
 module.exports = {
   candidateName: candidateName,
-  question: question,
-  correctAnswer: correctAnswer,
-  candidateAnswer: candidateAnswer,
+  question: questions[0], 
+  correctAnswer: correctAnswers[0], 
+  candidateAnswer: candidateAnswer, 
   questions: questions,
   correctAnswers: correctAnswers,
   candidateAnswers: candidateAnswers,
   gradeQuiz: gradeQuiz,
   runProgram: runProgram
 };
-
